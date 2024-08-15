@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     flex: 1,
-    paddingBottom: getHeight(10),
+    paddingBottom: getHeight(2),
   },
   inputContainer: {
     gap: getHeight(4),

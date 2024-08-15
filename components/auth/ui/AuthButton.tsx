@@ -8,6 +8,7 @@ import {
 import React, { FC } from "react";
 import { Colors } from "@/theme";
 import { fontFamilies, getFontSize } from "@/lib";
+import { LinearGradient } from "expo-linear-gradient";
 
 interface Props extends TouchableOpacityProps {
   type: "normal" | "gradient";
@@ -15,11 +16,21 @@ interface Props extends TouchableOpacityProps {
 }
 const AuthButton: FC<Props> = ({ type, text, ...extra }) => {
   return (
-    <TouchableOpacity
-      style={[[styles.container, { backgroundColor: "red" }]]}
-      {...extra}
-    >
-      <Text style={styles.text}>{text}</Text>
+    <TouchableOpacity style={{ width: "100%" }} {...extra}>
+      {type !== "gradient" ? (
+        <View style={styles.container}>
+          <Text style={styles.text}>{text}</Text>
+        </View>
+      ) : (
+        <LinearGradient
+          colors={["#000000", "#303568", "#2B2F55", "#374B8A"]} // Use gradient colors similar to your image
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={styles.container}
+        >
+          <Text style={styles.text}>{text}</Text>
+        </LinearGradient>
+      )}
     </TouchableOpacity>
   );
 };
@@ -38,6 +49,6 @@ const styles = StyleSheet.create({
   text: {
     color: Colors.white,
     fontSize: getFontSize(16),
-    fontFamily: fontFamilies.Popins.normal,
+    fontFamily: fontFamilies.Popins.medium,
   },
 });
