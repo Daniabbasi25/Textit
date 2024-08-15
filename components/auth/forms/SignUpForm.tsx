@@ -4,7 +4,7 @@ import AuthInput from "../ui/AuthInput";
 import AuthButton from "../ui/AuthButton";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { loginSchema, signupSchema } from "@/lib/validations";
+import { signupSchema } from "@/lib/validations";
 import { getHeight } from "@/lib";
 import { SignUpData } from "@/lib/interfaces";
 

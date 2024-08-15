@@ -5,16 +5,26 @@ import AuthHeading from "@/components/auth/ui/AuthHeading";
 import AuthSubTitle from "@/components/auth/ui/AuthSubTitle";
 import LoginForm from "@/components/auth/forms/LoginForm";
 import { fontFamilies, getFontSize, getHeight } from "@/lib";
+import { KeyboardAwareScrollView as KeyboardScroller } from "react-native-keyboard-aware-scroll-view";
 
 const SignIn = () => {
   return (
     <View style={styles.screenContainer}>
-      <AuthHeading text="Log in to Chatbox" />
-      <AuthSubTitle text="Welcome back! Sign in using your social account or email to continue us" />
-      <LoginForm />
-      <TouchableOpacity>
-        <Text style={styles.bottomText}>Forgot password?</Text>
-      </TouchableOpacity>
+      <KeyboardScroller
+        enableOnAndroid={true}
+        resetScrollToCoords={{ x: 0, y: 0 }}
+        // eslint-disable-next-line react-native/no-inline-styles
+        contentContainerStyle={{ flexGrow: 1 }}
+        scrollEnabled={true}
+        extraHeight={getHeight(15)}
+      >
+        <AuthHeading text="Log in to Chatbox" />
+        <AuthSubTitle text="Welcome back! Sign in using your social account or email to continue us" />
+        <LoginForm />
+        <TouchableOpacity>
+          <Text style={styles.bottomText}>Forgot password?</Text>
+        </TouchableOpacity>
+      </KeyboardScroller>
     </View>
   );
 };
