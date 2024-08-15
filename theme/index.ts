@@ -1,4 +1,5 @@
 export const Colors = {
   white: "#FFFFFF",
-  transparentWhite: "rgba(255,255,255,0.5)",
+  transparentWhiteText: "rgba(255,255,255,0.5)",
+  transparentWhiteButton: "rgba(255,255,255,0.3)",
 };
