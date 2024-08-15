@@ -15,4 +15,14 @@ const loginSchema = yup.object({
     .matches(EmailRegex, VALID_EMAIL),
   password: yup.string().required(REQUIRED_PASSWORD).min(8, VALID_PASSWORD),
 });
-export { loginSchema };
+const signupSchema = yup.object({
+  email: yup.string().email(VALID_EMAIL).required(REQUIRED_EMAIL),
+  name: yup.string().required(REQUIRED),
+  password: yup.string().required(REQUIRED_PASSWORD).min(8, VALID_PASSWORD),
+  confirmPassword: yup
+    .string()
+    .required(REQUIRED_PASSWORD)
+    .min(8, VALID_PASSWORD)
+    .oneOf([yup.ref("password")], MATCH_PASSWORD),
+});
+export { loginSchema, signupSchema };

@@ -23,7 +23,7 @@ const AuthButton: FC<Props> = ({ type, text, ...extra }) => {
         </View>
       ) : (
         <LinearGradient
-          colors={["#000000", "#303568", "#2B2F55", "#374B8A"]} // Use gradient colors similar to your image
+          colors={["#000000", "#2B2F55", "#303568", "#374B8A"]} // Use gradient colors similar to your image
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           style={styles.container}
