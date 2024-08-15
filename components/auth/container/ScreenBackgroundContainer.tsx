@@ -1,4 +1,9 @@
-import { ImageBackground, SafeAreaView, StyleSheet } from "react-native";
+import {
+  ImageBackground,
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+} from "react-native";
 import React, { FC, ReactNode } from "react";
 
 interface Props {
@@ -11,6 +16,7 @@ const ScreenBackgroundContainer: FC<Props> = ({ children }) => {
       style={{ flex: 1 }}
       resizeMode="cover"
     >
+      <StatusBar barStyle="light-content" />
       <SafeAreaView style={styles.container}>{children}</SafeAreaView>
     </ImageBackground>
   );
