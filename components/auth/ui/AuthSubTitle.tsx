@@ -20,8 +20,10 @@ const styles = StyleSheet.create({
   text: {
     textAlign: "center",
     fontSize: getFontSize(14),
-    fontFamily: fontFamilies.Popins.normal,
+    fontFamily: fontFamilies.Popins.light,
     color: Colors.AuthSubTitle,
     marginVertical: 15,
+    width: "80%",
+    alignSelf: "center",
   },
 });

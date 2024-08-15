@@ -52,6 +52,7 @@ export const getFontSize = (size: number) => {
 
 export const fontFamilies = {
   Popins: {
+    light: isIOS() ? "Poppins-Light" : "PoppinsLight",
     normal: isIOS() ? "Poppins-Regular" : "PoppinsRegular",
     medium: isIOS() ? "Poppins-Medium" : "PoppinsMedium",
     bold: isIOS() ? "Poppins-Bold" : "PoppinsBold",
@@ -59,6 +60,7 @@ export const fontFamilies = {
 };
 
 export const LoadfontFamilies = {
+  PoppinsLight: require("../assets/fonts/PoppinsLight.ttf"),
   PoppinsRegular: require("../assets/fonts/PoppinsRegular.ttf"),
   PoppinsMedium: require("../assets/fonts/PoppinsMedium.ttf"),
   PoppinsBold: require("../assets/fonts/PoppinsBold.ttf"),

@@ -5,4 +5,6 @@ export const Colors = {
   black: "#000E08",
   AuthHeading: "#3D4A7A",
   AuthSubTitle: "#797C7B",
+  inputBorder: "#CDD1D0",
+  errorColor: "#FF2D1B",
 };

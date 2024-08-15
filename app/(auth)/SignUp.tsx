@@ -1,16 +1,24 @@
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
-import { router } from "expo-router";
+
+import AuthHeading from "@/components/auth/ui/AuthHeading";
+import AuthSubTitle from "@/components/auth/ui/AuthSubTitle";
+import { Colors } from "@/theme";
 
 const SignUp = () => {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Sign Up Screen</Text>
-      <Button onPress={() => router.back()} title="signup" />
+    <View style={styles.screenContainer}>
+      <AuthHeading text="Sign up with Email" />
+      <AuthSubTitle text="Get chatting with friends and family today by signing up for our chat app!" />
     </View>
   );
 };
 
 export default SignUp;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  screenContainer: {
+    flex: 1,
+    backgroundColor: Colors.white,
+  },
+});

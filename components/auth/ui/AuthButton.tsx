@@ -15,7 +15,10 @@ interface Props extends TouchableOpacityProps {
 }
 const AuthButton: FC<Props> = ({ type, text, ...extra }) => {
   return (
-    <TouchableOpacity style={styles.container} {...extra}>
+    <TouchableOpacity
+      style={[[styles.container, { backgroundColor: "red" }]]}
+      {...extra}
+    >
       <Text style={styles.text}>{text}</Text>
     </TouchableOpacity>
   );

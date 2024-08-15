@@ -3,12 +3,14 @@ import React from "react";
 import { Colors } from "@/theme";
 import AuthHeading from "@/components/auth/ui/AuthHeading";
 import AuthSubTitle from "@/components/auth/ui/AuthSubTitle";
+import LoginForm from "@/components/auth/forms/LoginForm";
 
 const SignIn = () => {
   return (
     <View style={styles.screenContainer}>
       <AuthHeading text="Log in to Chatbox" />
       <AuthSubTitle text="Welcome back! Sign in using your social account or email to continue us" />
+      <LoginForm />
     </View>
   );
 };
