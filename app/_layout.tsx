@@ -24,7 +24,7 @@ export default function RootLayout() {
     <Provider store={store}>
       <Stack>
         <Stack.Screen
-          name="index"
+          name="(auth)"
           options={{
             headerShown: false,
           }}
