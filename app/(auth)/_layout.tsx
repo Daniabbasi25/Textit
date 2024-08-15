@@ -1,7 +1,15 @@
-import store from "@/store/store";
+import { Colors } from "@/theme";
 
 import { Stack } from "expo-router";
 
+const HEADEROPTIONS = {
+  // headerShown: false,
+  headerTitle: "",
+  headerBackTitleVisible: false,
+  headerTintColor: Colors.black,
+  headerShadowVisible: false,
+  headerBackButtonMenuEnabled: false,
+};
 export default function RootLayout() {
   return (
     <Stack>
@@ -11,12 +19,8 @@ export default function RootLayout() {
           headerShown: false,
         }}
       />
-      <Stack.Screen
-        name="SignUp"
-        options={{
-          headerShown: false,
-        }}
-      />
+      <Stack.Screen name="SignUp" options={HEADEROPTIONS} />
+      <Stack.Screen name="SignIn" options={HEADEROPTIONS} />
     </Stack>
   );
 }

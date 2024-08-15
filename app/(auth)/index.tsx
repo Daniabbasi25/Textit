@@ -4,6 +4,7 @@ import ScreenBackgroundContainer from "@/components/auth/container/ScreenBackgro
 import { fontFamilies, getFontSize, getHeight } from "@/lib";
 import { Colors } from "@/theme";
 import AuthButton from "@/components/auth/ui/AuthButton";
+import { router } from "expo-router";
 
 const index = () => {
   return (
@@ -16,11 +17,15 @@ const index = () => {
             family.
           </Text>
         </View>
-        <View style={{ gap: getHeight(1.5) }}>
-          <AuthButton type="normal" text="Sign up withn mail" />
+        <View style={{ gap: getHeight(2) }}>
+          <AuthButton
+            onPress={() => router.navigate("/SignUp")}
+            type="normal"
+            text="Sign up withn mail"
+          />
           <View style={styles.row}>
             <Text style={styles.bottomText}>Existing account?</Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => router.navigate("/SignIn")}>
               <Text style={styles.boldText}>Log in</Text>
             </TouchableOpacity>
           </View>
