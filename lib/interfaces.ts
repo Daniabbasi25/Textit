@@ -8,4 +8,9 @@ interface SignUpData {
   name: String;
   confirmPassword: string;
 }
-export { LoginData, SignUpData };
+interface SvgProps {
+  width: number;
+  height: number;
+  color?: string;
+}
+export { LoginData, SignUpData, SvgProps };

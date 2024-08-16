@@ -7,4 +7,6 @@ export const Colors = {
   AuthSubTitle: "#797C7B",
   inputBorder: "#CDD1D0",
   errorColor: "#FF2D1B",
+  activeTabTint: "#3D4A7A",
+  inactiveTabTint: "rgba(121,124,123,0.4)",
 };

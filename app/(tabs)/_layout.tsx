@@ -1,65 +1,87 @@
 import { Tabs } from "expo-router";
 import React from "react";
 
-import { TabBarIcon } from "@/components/navigation/TabBarIcon";
-import { Colors } from "@/constants/Colors";
-import { useColorScheme } from "@/hooks/useColorScheme";
+import {
+  MessageIconSvg,
+  CallsIconSvg,
+  ContactsIconSvg,
+  SettingIconSvg,
+} from "@/assets";
+import { Colors } from "@/theme";
+import { fontFamilies, getFontSize, getHeight, getWidth } from "@/lib";
+import { Text } from "react-native";
 
+const CustomTabBarLabel = ({
+  label,
+  focused,
+}: {
+  label: string;
+  focused: boolean;
+}) => {
+  return (
+    <Text
+      style={{
+        fontFamily: focused
+          ? fontFamilies.Popins.medium
+          : fontFamilies.Popins.normal,
+        fontSize: getFontSize(12),
+        color: focused ? Colors.activeTabTint : Colors.inactiveTabTint,
+      }}
+    >
+      {label}
+    </Text>
+  );
+};
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+      screenOptions={({ route }) => ({
+        tabBarActiveTintColor: Colors.activeTabTint,
+        tabBarInactiveTintColor: Colors.inactiveTabTint,
         headerShown: false,
-      }}
+
+        tabBarLabel: ({ focused }) => (
+          <CustomTabBarLabel label={route.name} focused={focused} />
+        ),
+        tabBarStyle: {
+          height: getHeight(10),
+          backgroundColor: Colors.white,
+        },
+      })}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "home" : "home-outline"}
-              color={color}
-            />
+          title: "Message",
+          tabBarIcon: ({ color, size }) => (
+            <MessageIconSvg width={size} height={size} color={color} />
           ),
         }}
       />
       <Tabs.Screen
         name="calls"
         options={{
-          title: "calls",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "code-slash" : "code-slash-outline"}
-              color={color}
-            />
+          title: "Calls",
+          tabBarIcon: ({ color, size }) => (
+            <CallsIconSvg width={size} height={size} color={color} />
           ),
         }}
       />
       <Tabs.Screen
         name="contacts"
         options={{
-          title: "contacts",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "code-slash" : "code-slash-outline"}
-              color={color}
-            />
+          title: "Contacts",
+          tabBarIcon: ({ color, size }) => (
+            <ContactsIconSvg width={size} height={size} color={color} />
           ),
         }}
       />
       <Tabs.Screen
         name="settings"
         options={{
-          title: "settings",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "code-slash" : "code-slash-outline"}
-              color={color}
-            />
+          title: "Settings",
+          tabBarIcon: ({ color, size }) => (
+            <SettingIconSvg width={size} height={size} color={color} />
           ),
         }}
       />
