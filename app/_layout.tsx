@@ -1,35 +1,33 @@
-import { LoadfontFamilies } from "@/lib";
-import store from "@/store/store";
-import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
-import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
-import { Provider } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { Provider, useSelector } from "react-redux";
+import { Slot, useRouter } from "expo-router";
+import { store } from "../store/store";
+import { selectIsAuthenticated } from "@/modules/auth/authSelectors";
 
-SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout() {
-  const [loaded] = useFonts(LoadfontFamilies);
+function AppContent() {
+  const router = useRouter();
+  const [isReady, setIsReady] = useState(false);
+  const isLoggedIn = useSelector(selectIsAuthenticated);
 
   useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
+    if (isLoggedIn) {
+      setIsReady(true);
+    } else {
+      router.replace("/OnBoarding");
     }
-  }, [loaded]);
+  }, [isLoggedIn]);
 
-  if (!loaded) {
-    return null;
+  if (!isReady) {
+    return null; // or return a loading component
   }
+
+  return <Slot />;
+}
+
+export default function Layout() {
   return (
     <Provider store={store}>
-      <Stack>
-        <Stack.Screen
-          name="(auth)"
-          options={{
-            headerShown: false,
-          }}
-        />
-      </Stack>
+      <AppContent />
     </Provider>
   );
 }

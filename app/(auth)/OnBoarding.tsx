@@ -6,7 +6,7 @@ import { Colors } from "@/theme";
 import AuthButton from "@/components/auth/ui/AuthButton";
 import { router } from "expo-router";
 
-const index = () => {
+const OnBoarding = () => {
   return (
     <ScreenBackgroundContainer>
       <View style={styles.contentContainer}>
@@ -35,7 +35,7 @@ const index = () => {
   );
 };
 
-export default index;
+export default OnBoarding;
 
 const styles = StyleSheet.create({
   heading: {
