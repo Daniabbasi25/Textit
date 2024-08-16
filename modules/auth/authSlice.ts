@@ -32,10 +32,14 @@ const authSlice = createSlice({
       state.token = null;
       state.isAuthenticated = false;
     },
+    dummyLogin(state) {
+      state.isAuthenticated = true;
+      console.log(state.isAuthenticated);
+    },
   },
 });
 
-export const { loginRequest, loginSuccess, loginFailure, logout } =
+export const { loginRequest, loginSuccess, loginFailure, logout, dummyLogin } =
   authSlice.actions;
 
 export default authSlice.reducer;

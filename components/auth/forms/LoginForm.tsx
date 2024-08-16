@@ -7,6 +7,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "@/lib/validations";
 import { getHeight } from "@/lib";
 import { LoginData } from "@/lib/interfaces";
+import { useDispatch } from "react-redux";
+import { dummyLogin } from "@/modules/auth/authSlice";
 
 const defaultValues = {
   email: "",
@@ -14,13 +16,16 @@ const defaultValues = {
 };
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const { control, handleSubmit } = useForm({
     mode: "onSubmit",
     defaultValues,
     resolver: yupResolver(loginSchema),
   });
 
-  const onSubmit = (data: LoginData): void => {};
+  const onSubmit = (data: LoginData): void => {
+    dispatch(dummyLogin());
+  };
 
   return (
     <View style={styles.container}>
