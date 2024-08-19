@@ -4,7 +4,7 @@ import { AuthState, User } from "./authTypes";
 const initialState: AuthState = {
   user: null,
   token: null,
-  isAuthenticated: true,
+  isAuthenticated: false,
   loading: false,
   error: null,
 };
@@ -13,11 +13,14 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    loginRequest(state) {
+    loginSignupRequest(state) {
       state.loading = true;
       state.error = null;
     },
-    loginSuccess(state, action: PayloadAction<{ user: User; token: string }>) {
+    loginSignUpSuccess(
+      state,
+      action: PayloadAction<{ user: User; token: string }>
+    ) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isAuthenticated = true;
@@ -39,7 +42,12 @@ const authSlice = createSlice({
   },
 });
 
-export const { loginRequest, loginSuccess, loginFailure, logout, dummyLogin } =
-  authSlice.actions;
+export const {
+  loginSignupRequest,
+  loginSignUpSuccess,
+  loginFailure,
+  logout,
+  dummyLogin,
+} = authSlice.actions;
 
 export default authSlice.reducer;

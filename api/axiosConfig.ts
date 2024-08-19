@@ -1,6 +1,7 @@
 import axios from "axios";
 import { MAX_API_TIMEOUT } from "./env";
-import { apiKey, baseUrl } from "./constant";
+import { baseUrl } from "./constant";
+import store from "@/store/store";
 
 const apiClient = axios.create({
   baseURL: baseUrl,
@@ -8,18 +9,29 @@ const apiClient = axios.create({
 });
 
 apiClient.interceptors.request.use(
-  (config) => {
-    if (!config.params) {
-      config.params = {};
+  async (config) => {
+    try {
+      // make it dynamic
+      let token: string | null | undefined = store.getState().auth.token;
+
+      if (token === undefined) {
+        // for sign in and sign up use Guest Token
+
+        token = null;
+      } else {
+        token = `Bearer ${token}`;
+        config.headers.Authorization = token;
+      }
+
+      return config;
+    } catch (error) {
+      // Handle token retrieval error
+
+      throw error;
     }
-
-    config.params["api_key"] = apiKey;
-
-    return config;
   },
-  (error) => {
-    return Promise.reject(error);
+  async (error) => {
+    return await Promise.reject(error);
   }
 );
-
 export default apiClient;

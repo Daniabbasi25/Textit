@@ -6,6 +6,7 @@ import { selectIsAuthenticated } from "@/modules/auth/authSelectors";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
 import { LoadfontFamilies } from "@/lib";
+import { FlashMessageProvider } from "@/context/FlashMessageContext";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -46,7 +47,9 @@ export default function Layout() {
   }
   return (
     <Provider store={store}>
-      <AppContent />
+      <FlashMessageProvider>
+        <AppContent />
+      </FlashMessageProvider>
     </Provider>
   );
 }

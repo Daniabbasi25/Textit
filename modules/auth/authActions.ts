@@ -1,19 +1,44 @@
 import { AppDispatch } from "@/store/store";
-import { loginRequest, loginSuccess, loginFailure, logout } from "./authSlice";
+import {
+  loginSignupRequest,
+  loginSignUpSuccess,
+  loginFailure,
+  logout,
+} from "./authSlice";
 import { User } from "./authTypes";
 import axios from "axios";
+import apiClient from "@/api/axiosConfig";
 
+export const registerUser =
+  (name: string, email: string, password: string) =>
+  async (dispatch: AppDispatch) => {
+    try {
+      dispatch(loginSignupRequest());
+      const response = await apiClient.post("auth/register", {
+        name,
+        email,
+        password,
+      });
+      const { user, token }: { user: User; token: string } = response.data;
+
+      dispatch(loginSignUpSuccess({ user, token }));
+    } catch (error: any) {
+      dispatch(
+        loginFailure(error.response?.data?.message || "Registration failed")
+      );
+    }
+  };
 export const loginUser =
   (username: string, password: string) => async (dispatch: AppDispatch) => {
     try {
-      dispatch(loginRequest());
+      dispatch(loginSignupRequest());
       const response = await axios.post("/api/auth/login", {
         username,
         password,
       });
       const { user, token }: { user: User; token: string } = response.data;
 
-      dispatch(loginSuccess({ user, token }));
+      dispatch(loginSignUpSuccess({ user, token }));
     } catch (error: any) {
       dispatch(loginFailure(error.response?.data?.message || "Login failed"));
     }

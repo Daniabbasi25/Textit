@@ -7,6 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { signupSchema } from "@/lib/validations";
 import { getHeight } from "@/lib";
 import { SignUpData } from "@/lib/interfaces";
+import { useFlashMessage } from "@/context/FlashMessageContext";
 
 const defaultValues = {
   email: "",
@@ -15,13 +16,18 @@ const defaultValues = {
   name: "",
 };
 const SignUpForm = () => {
+  const { showMessage } = useFlashMessage();
+
   const { control, handleSubmit } = useForm({
     mode: "onSubmit",
     defaultValues,
     resolver: yupResolver(signupSchema),
   });
 
-  const onSubmit = (data: SignUpData): void => {};
+  const onSubmit = (data: SignUpData): void => {
+    console.log(data);
+    showMessage("success", "data is shown");
+  };
 
   return (
     <View style={styles.container}>
@@ -32,6 +38,12 @@ const SignUpForm = () => {
           label="Password"
           control={control}
           name="password"
+          isPassword
+        />
+        <AuthInput
+          label="Confirm Password"
+          control={control}
+          name="confirmPassword"
           isPassword
         />
       </View>
