@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Provider, useSelector } from "react-redux";
-import { Slot, Stack, useRouter, useSegments } from "expo-router";
+import { Stack, useRouter, useSegments } from "expo-router";
 import { store } from "../store/store";
 import { selectIsAuthenticated } from "@/modules/auth/authSelectors";
 
@@ -30,7 +30,9 @@ function AppContent() {
 export default function Layout() {
   return (
     <Provider store={store}>
+      {/* <BackgroundImageProvider> */}
       <AppContent />
+      {/* </BackgroundImageProvider> */}
     </Provider>
   );
 }

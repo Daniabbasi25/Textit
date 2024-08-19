@@ -15,13 +15,14 @@ const AvatarWithSegmentedBorder: React.FC<AvatarProps> = ({
   colors,
 }) => {
   const size = 80; // Size of the avatar including border
-  const radius = 35; // Radius of the inner circle (avatar size/2 minus some padding)
+  const radius = 34; // Adjusted Radius of the inner circle (avatar size/2 minus some padding)
   const strokeWidth = 5; // Thickness of each segment
-  const angle = 360 / storyCount; // Angle covered by each segment
+  const gap = 20; // Gap between segments
+  const angle = 360 / storyCount - gap; // Adjusted angle covered by each segment
 
   const createSegments = () => {
     return Array.from({ length: storyCount }).map((_, index) => {
-      const startAngle = index * angle;
+      const startAngle = index * (angle + gap); // Include gap in the calculation
       const endAngle = startAngle + angle;
       const largeArcFlag = angle > 180 ? 1 : 0;
 
@@ -36,7 +37,6 @@ const AvatarWithSegmentedBorder: React.FC<AvatarProps> = ({
       const endY =
         size / 2 + radius * Math.sin((endAngle - 90) * (Math.PI / 180));
 
-      // Special case for a single segment
       const pathData =
         storyCount === 1
           ? `M ${size / 2},${
