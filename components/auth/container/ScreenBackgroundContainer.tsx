@@ -1,13 +1,19 @@
+import { isIOS } from "@/lib";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { FC, ReactNode, useState } from "react";
 import {
   ImageBackground,
-  SafeAreaView,
+  // SafeAreaView,
   StatusBar,
   StyleSheet,
   View,
   ActivityIndicator,
 } from "react-native";
+import {
+  SafeAreaProvider,
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
 interface Props {
   children: ReactNode;
@@ -15,6 +21,7 @@ interface Props {
 
 const ScreenBackgroundContainer: FC<Props> = ({ children }) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const insets = useSafeAreaInsets();
 
   return (
     <View style={{ flex: 1 }}>
@@ -37,7 +44,13 @@ const ScreenBackgroundContainer: FC<Props> = ({ children }) => {
         resizeMode="cover"
         onLoad={() => setIsImageLoaded(true)} // Mark image as loaded when ready
       >
-        <SafeAreaView style={styles.container}>{children}</SafeAreaView>
+        <SafeAreaProvider>
+          <SafeAreaView
+            style={[styles.container, !isIOS() && { paddingTop: insets.top }]}
+          >
+            {children}
+          </SafeAreaView>
+        </SafeAreaProvider>
       </ImageBackground>
     </View>
   );

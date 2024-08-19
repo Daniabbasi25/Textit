@@ -8,7 +8,7 @@ import {
   SettingIconSvg,
 } from "@/assets";
 import { Colors } from "@/theme";
-import { fontFamilies, getFontSize, getHeight, getWidth } from "@/lib";
+import { fontFamilies, getFontSize, getHeight, getWidth, isIOS } from "@/lib";
 import { Text } from "react-native";
 
 const CustomTabBarLabel = ({
@@ -44,8 +44,7 @@ export default function TabLayout() {
           <CustomTabBarLabel label={route.name} focused={focused} />
         ),
         tabBarStyle: {
-          height: getHeight(10),
-          backgroundColor: Colors.white,
+          height: isIOS() ? getHeight(10) : getHeight(7),
         },
       })}
     >
