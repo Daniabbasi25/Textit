@@ -4,7 +4,7 @@ import {
   StatusBar,
   StyleSheet,
 } from "react-native";
-import React, { FC, ReactNode } from "react";
+import React, { FC, ReactNode, memo } from "react";
 
 interface Props {
   children: ReactNode;
@@ -22,7 +22,7 @@ const ScreenBackgroundContainer: FC<Props> = ({ children }) => {
   );
 };
 
-export default ScreenBackgroundContainer;
+export default memo(ScreenBackgroundContainer);
 
 const styles = StyleSheet.create({
   container: {

@@ -6,13 +6,13 @@ import Svg, { Path } from "react-native-svg";
 interface AvatarProps {
   uri: string;
   storyCount: number;
-  colors?: string[];
+  colors: string[];
 }
 
 const AvatarWithSegmentedBorder: React.FC<AvatarProps> = ({
   uri,
   storyCount,
-  colors = ["red", "green", "blue"],
+  colors,
 }) => {
   const size = 80; // Size of the avatar including border
   const radius = 35; // Radius of the inner circle (avatar size/2 minus some padding)
