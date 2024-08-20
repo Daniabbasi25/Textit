@@ -10,7 +10,7 @@ interface FlashBarProps {
 interface SignUpData {
   email: string;
   password: string;
-  name: String;
+  name: string;
   confirmPassword: string;
 }
 interface SvgProps {

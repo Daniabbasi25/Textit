@@ -10,7 +10,12 @@ import axios from "axios";
 import apiClient from "@/api/axiosConfig";
 
 export const registerUser =
-  (name: string, email: string, password: string) =>
+  (
+    name: string,
+    email: string,
+    password: string,
+    showMessage: (type: "success" | "danger" | "info", message: string) => void
+  ) =>
   async (dispatch: AppDispatch) => {
     try {
       dispatch(loginSignupRequest());
@@ -19,28 +24,43 @@ export const registerUser =
         email,
         password,
       });
+
       const { user, token }: { user: User; token: string } = response.data;
 
       dispatch(loginSignUpSuccess({ user, token }));
+      showMessage("success", "Sign Up Successfull");
     } catch (error: any) {
       dispatch(
         loginFailure(error.response?.data?.message || "Registration failed")
       );
+      showMessage(
+        "danger",
+        error.response?.data?.message || "Registration failed"
+      );
     }
   };
 export const loginUser =
-  (username: string, password: string) => async (dispatch: AppDispatch) => {
+  (
+    email: string,
+    password: string,
+
+    showMessage: (type: "success" | "danger" | "info", message: string) => void
+  ) =>
+  async (dispatch: AppDispatch) => {
     try {
       dispatch(loginSignupRequest());
-      const response = await axios.post("/api/auth/login", {
-        username,
+      const response = await apiClient.post("auth/login", {
+        email,
         password,
       });
+
       const { user, token }: { user: User; token: string } = response.data;
 
       dispatch(loginSignUpSuccess({ user, token }));
+      showMessage("success", "Login Successfull");
     } catch (error: any) {
       dispatch(loginFailure(error.response?.data?.message || "Login failed"));
+      showMessage("danger", error.response?.data?.message || "Login failed");
     }
   };
 

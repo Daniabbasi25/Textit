@@ -8,6 +8,9 @@ import { signupSchema } from "@/lib/validations";
 import { getHeight } from "@/lib";
 import { SignUpData } from "@/lib/interfaces";
 import { useFlashMessage } from "@/context/FlashMessageContext";
+import { useDispatch } from "react-redux";
+import { registerUser } from "@/modules/auth/authActions";
+import { AppDispatch } from "@/store/store";
 
 const defaultValues = {
   email: "",
@@ -17,6 +20,7 @@ const defaultValues = {
 };
 const SignUpForm = () => {
   const { showMessage } = useFlashMessage();
+  const dispatch = useDispatch<AppDispatch>();
 
   const { control, handleSubmit } = useForm({
     mode: "onSubmit",
@@ -25,8 +29,7 @@ const SignUpForm = () => {
   });
 
   const onSubmit = (data: SignUpData): void => {
-    console.log(data);
-    showMessage("success", "data is shown");
+    dispatch(registerUser(data.name, data.email, data.password, showMessage));
   };
 
   return (

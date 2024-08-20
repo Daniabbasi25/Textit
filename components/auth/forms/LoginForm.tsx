@@ -9,6 +9,9 @@ import { getHeight } from "@/lib";
 import { LoginData } from "@/lib/interfaces";
 import { useDispatch } from "react-redux";
 import { dummyLogin } from "@/modules/auth/authSlice";
+import { AppDispatch } from "@/store/store";
+import { loginUser } from "@/modules/auth/authActions";
+import { useFlashMessage } from "@/context/FlashMessageContext";
 
 const defaultValues = {
   email: "",
@@ -16,7 +19,9 @@ const defaultValues = {
 };
 
 const LoginForm = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
+  const { showMessage } = useFlashMessage();
+
   const { control, handleSubmit } = useForm({
     mode: "onSubmit",
     defaultValues,
@@ -24,7 +29,7 @@ const LoginForm = () => {
   });
 
   const onSubmit = (data: LoginData): void => {
-    dispatch(dummyLogin());
+    dispatch(loginUser(data.email, data.password, showMessage));
   };
 
   return (
