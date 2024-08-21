@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import Modal from "react-native-modal";
 import LoaderKit from "react-native-loader-kit";
 import { Colors } from "@/theme";
@@ -21,7 +21,7 @@ const Loader: FC<Props> = ({ isVisible }) => {
   );
 };
 
-export default Loader;
+export default memo(Loader);
 
 const styles = StyleSheet.create({
   container: {
