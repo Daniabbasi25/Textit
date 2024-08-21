@@ -9,5 +9,7 @@ export const Colors = {
   errorColor: "#FF2D1B",
   activeTabTint: "#3D4A7A",
   inactiveTabTint: "rgba(121,124,123,0.4)",
+  chatListmessage: "rgba(121,124,123,0.5)",
   iconBackground: "rgba(255,255,255,0.2)",
+  handleColor: "#E6E6E6",
 };

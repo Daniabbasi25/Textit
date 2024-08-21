@@ -5,12 +5,23 @@ import { Colors } from "@/theme";
 
 interface Props {
   uri: string;
+  SIZE?: number;
 }
-const SIZE = getWidth(12);
-const Avatar: FC<Props> = ({ uri }) => {
+
+const Avatar: FC<Props> = ({ uri, SIZE = getWidth(12) }) => {
   return (
     <View>
-      <Image source={{ uri }} style={styles.image} />
+      <Image
+        source={{ uri }}
+        style={[
+          styles.image,
+          {
+            width: SIZE,
+            height: SIZE,
+            borderRadius: SIZE / 2,
+          },
+        ]}
+      />
     </View>
   );
 };
@@ -19,9 +30,6 @@ export default Avatar;
 
 const styles = StyleSheet.create({
   image: {
-    width: SIZE,
-    height: SIZE,
-    borderRadius: SIZE / 2,
     backgroundColor: Colors.iconBackground,
     resizeMode: "cover",
   },

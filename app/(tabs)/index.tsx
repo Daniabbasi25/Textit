@@ -4,13 +4,14 @@ import ScreenBackgroundContainer from "@/components/auth/container/ScreenBackgro
 import ChatScreenHeader from "@/components/chat/container/ChatScreenHeader";
 import StoriesContainer from "@/components/chat/container/StoriesContainer";
 import AnimatedContainer from "@/components/chat/container/AnimatedContainer";
+import ChatListContainer from "@/components/chat/container/ChatListContainer";
 
 const index = () => {
   return (
     <ScreenBackgroundContainer>
       <ChatScreenHeader />
       <StoriesContainer />
-      <AnimatedContainer />
+      <ChatListContainer />
     </ScreenBackgroundContainer>
   );
 };

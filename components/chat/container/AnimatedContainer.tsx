@@ -1,13 +1,17 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useEffect } from "react";
+import React, { FC, ReactNode, useEffect } from "react";
 import { Colors } from "@/theme";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
 } from "react-native-reanimated";
+import { getHeight } from "@/lib";
 
-const AnimatedContainer = () => {
+interface Props {
+  children: ReactNode;
+}
+const AnimatedContainer: FC<Props> = ({ children }) => {
   const translateY = useSharedValue(300);
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -21,7 +25,8 @@ const AnimatedContainer = () => {
   }, [translateY]);
   return (
     <Animated.View style={[styles.container, animatedStyle]}>
-      <Text>AnimatedContainer</Text>
+      <View style={styles.tophandler} />
+      {children}
     </Animated.View>
   );
 };
@@ -34,5 +39,13 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     borderTopEndRadius: 40,
     borderTopStartRadius: 40,
+  },
+  tophandler: {
+    width: "10%",
+    height: 5,
+    alignSelf: "center",
+    backgroundColor: Colors.handleColor,
+    marginVertical: getHeight(1),
+    borderRadius: 20,
   },
 });
