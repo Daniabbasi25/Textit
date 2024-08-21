@@ -12,6 +12,7 @@ import { dummyLogin } from "@/modules/auth/authSlice";
 import { AppDispatch } from "@/store/store";
 import { loginUser } from "@/modules/auth/authActions";
 import { useFlashMessage } from "@/context/FlashMessageContext";
+import Loader from "@/components/Loader";
 
 const defaultValues = {
   email: "",
@@ -48,6 +49,7 @@ const LoginForm = () => {
         type="gradient"
         onPress={handleSubmit(onSubmit)}
       />
+      <Loader isVisible />
     </View>
   );
 };
