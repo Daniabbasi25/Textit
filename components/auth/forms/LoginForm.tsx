@@ -7,12 +7,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "@/lib/validations";
 import { getHeight } from "@/lib";
 import { LoginData } from "@/lib/interfaces";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { dummyLogin } from "@/modules/auth/authSlice";
 import { AppDispatch } from "@/store/store";
 import { loginUser } from "@/modules/auth/authActions";
 import { useFlashMessage } from "@/context/FlashMessageContext";
 import Loader from "@/components/Loader";
+import { selectAuthLoading } from "@/modules/auth/authSelectors";
 
 const defaultValues = {
   email: "",
@@ -21,6 +22,7 @@ const defaultValues = {
 
 const LoginForm = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const isLoading = useSelector(selectAuthLoading);
   const { showMessage } = useFlashMessage();
 
   const { control, handleSubmit } = useForm({
@@ -49,7 +51,7 @@ const LoginForm = () => {
         type="gradient"
         onPress={handleSubmit(onSubmit)}
       />
-      <Loader isVisible />
+      <Loader isVisible={isLoading} />
     </View>
   );
 };

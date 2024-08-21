@@ -8,9 +8,11 @@ import { signupSchema } from "@/lib/validations";
 import { getHeight } from "@/lib";
 import { SignUpData } from "@/lib/interfaces";
 import { useFlashMessage } from "@/context/FlashMessageContext";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "@/modules/auth/authActions";
 import { AppDispatch } from "@/store/store";
+import { selectAuthLoading } from "@/modules/auth/authSelectors";
+import Loader from "@/components/Loader";
 
 const defaultValues = {
   email: "",
@@ -20,6 +22,8 @@ const defaultValues = {
 };
 const SignUpForm = () => {
   const { showMessage } = useFlashMessage();
+  const isLoading = useSelector(selectAuthLoading);
+
   const dispatch = useDispatch<AppDispatch>();
 
   const { control, handleSubmit } = useForm({
@@ -55,6 +59,7 @@ const SignUpForm = () => {
         type="gradient"
         onPress={handleSubmit(onSubmit)}
       />
+      <Loader isVisible={isLoading} />
     </View>
   );
 };
