@@ -14,10 +14,13 @@ export const registerUser =
     name: string,
     email: string,
     password: string,
-    showMessage: (type: "success" | "danger" | "info", message: string) => void
+    showMessage: (type: "success" | "danger" | "info", message: string) => void,
+    showLoader: () => void,
+    hideLoader: () => void
   ) =>
   async (dispatch: AppDispatch) => {
     try {
+      showLoader();
       dispatch(loginSignupRequest());
       const response = await apiClient.post("auth/register", {
         name,
@@ -28,8 +31,10 @@ export const registerUser =
       const { user, token }: { user: User; token: string } = response.data;
 
       dispatch(loginSignUpSuccess({ user, token }));
+      hideLoader();
       showMessage("success", "Sign Up Successfull");
     } catch (error: any) {
+      hideLoader();
       dispatch(
         loginFailure(error.response?.data?.message || "Registration failed")
       );
@@ -44,10 +49,13 @@ export const loginUser =
     email: string,
     password: string,
 
-    showMessage: (type: "success" | "danger" | "info", message: string) => void
+    showMessage: (type: "success" | "danger" | "info", message: string) => void,
+    showLoader: () => void,
+    hideLoader: () => void
   ) =>
   async (dispatch: AppDispatch) => {
     try {
+      showLoader();
       dispatch(loginSignupRequest());
       const response = await apiClient.post("auth/login", {
         email,
@@ -57,8 +65,10 @@ export const loginUser =
       const { user, token }: { user: User; token: string } = response.data;
 
       dispatch(loginSignUpSuccess({ user, token }));
+      hideLoader();
       showMessage("success", "Login Successfull");
     } catch (error: any) {
+      hideLoader();
       dispatch(loginFailure(error.response?.data?.message || "Login failed"));
       showMessage("danger", error.response?.data?.message || "Login failed");
     }

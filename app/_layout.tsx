@@ -7,6 +7,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
 import { LoadfontFamilies } from "@/lib";
 import { FlashMessageProvider } from "@/context/FlashMessageContext";
+import { LoaderProvider } from "@/context/LoaderContext";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -48,7 +49,9 @@ export default function Layout() {
   return (
     <Provider store={store}>
       <FlashMessageProvider>
-        <AppContent />
+        <LoaderProvider>
+          <AppContent />
+        </LoaderProvider>
       </FlashMessageProvider>
     </Provider>
   );

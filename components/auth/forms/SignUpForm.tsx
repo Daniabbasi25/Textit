@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
 import AuthInput from "../ui/AuthInput";
 import AuthButton from "../ui/AuthButton";
@@ -8,11 +8,11 @@ import { signupSchema } from "@/lib/validations";
 import { getHeight } from "@/lib";
 import { SignUpData } from "@/lib/interfaces";
 import { useFlashMessage } from "@/context/FlashMessageContext";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { registerUser } from "@/modules/auth/authActions";
 import { AppDispatch } from "@/store/store";
-import { selectAuthLoading } from "@/modules/auth/authSelectors";
-import Loader from "@/components/Loader";
+
+import { useLoader } from "@/context/LoaderContext";
 
 const defaultValues = {
   email: "",
@@ -22,7 +22,7 @@ const defaultValues = {
 };
 const SignUpForm = () => {
   const { showMessage } = useFlashMessage();
-  const isLoading = useSelector(selectAuthLoading);
+  const { hideLoader, showLoader } = useLoader();
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -33,7 +33,16 @@ const SignUpForm = () => {
   });
 
   const onSubmit = (data: SignUpData): void => {
-    dispatch(registerUser(data.name, data.email, data.password, showMessage));
+    dispatch(
+      registerUser(
+        data.name,
+        data.email,
+        data.password,
+        showMessage,
+        showLoader,
+        hideLoader
+      )
+    );
   };
 
   return (
@@ -59,7 +68,6 @@ const SignUpForm = () => {
         type="gradient"
         onPress={handleSubmit(onSubmit)}
       />
-      <Loader isVisible={isLoading} />
     </View>
   );
 };

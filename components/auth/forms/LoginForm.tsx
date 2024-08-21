@@ -7,13 +7,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "@/lib/validations";
 import { getHeight } from "@/lib";
 import { LoginData } from "@/lib/interfaces";
-import { useDispatch, useSelector } from "react-redux";
-import { dummyLogin } from "@/modules/auth/authSlice";
+import { useDispatch } from "react-redux";
+
 import { AppDispatch } from "@/store/store";
 import { loginUser } from "@/modules/auth/authActions";
 import { useFlashMessage } from "@/context/FlashMessageContext";
-import Loader from "@/components/Loader";
-import { selectAuthLoading } from "@/modules/auth/authSelectors";
+import { useLoader } from "@/context/LoaderContext";
 
 const defaultValues = {
   email: "",
@@ -22,8 +21,9 @@ const defaultValues = {
 
 const LoginForm = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const isLoading = useSelector(selectAuthLoading);
+
   const { showMessage } = useFlashMessage();
+  const { hideLoader, showLoader } = useLoader();
 
   const { control, handleSubmit } = useForm({
     mode: "onSubmit",
@@ -32,7 +32,9 @@ const LoginForm = () => {
   });
 
   const onSubmit = (data: LoginData): void => {
-    dispatch(loginUser(data.email, data.password, showMessage));
+    dispatch(
+      loginUser(data.email, data.password, showMessage, showLoader, hideLoader)
+    );
   };
 
   return (
@@ -51,7 +53,6 @@ const LoginForm = () => {
         type="gradient"
         onPress={handleSubmit(onSubmit)}
       />
-      <Loader isVisible={isLoading} />
     </View>
   );
 };
