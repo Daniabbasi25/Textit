@@ -9,7 +9,11 @@ interface Props {
 }
 const Loader: FC<Props> = ({ isVisible }) => {
   return (
-    <Modal isVisible={isVisible}>
+    <Modal
+      animationIn={"fadeIn"}
+      animationOut={"fadeOut"}
+      isVisible={isVisible}
+    >
       <View style={styles.container}>
         <LoaderKit
           style={{ width: 50, height: 50 }}
