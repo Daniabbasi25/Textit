@@ -1,17 +1,21 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import AnimatedContainer from "./AnimatedContainer";
 import ChatListItem from "../ui/ChatListItem";
 import { ChatListDummy } from "@/constants/ChatListDummy";
 import { getHeight } from "@/lib";
+import ChatListItemSkeleton from "../ui/skeleton/ChatListItemSkeleton";
 
 const ChatListContainer = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   return (
     <AnimatedContainer>
       <FlatList
-        data={ChatListDummy}
-        renderItem={({ item }) => <ChatListItem {...item} />}
-        keyExtractor={(item) => item.id.toString()}
+        data={isLoading ? Array(10).fill({}) : ChatListDummy}
+        renderItem={({ item }) =>
+          isLoading ? <ChatListItemSkeleton /> : <ChatListItem {...item} />
+        }
+        keyExtractor={(item) => item?.id?.toString()}
         ItemSeparatorComponent={() => <View style={{ height: getHeight(1) }} />}
         showsVerticalScrollIndicator={false}
       />

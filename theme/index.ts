@@ -12,4 +12,5 @@ export const Colors = {
   chatListmessage: "rgba(121,124,123,0.5)",
   iconBackground: "rgba(255,255,255,0.2)",
   handleColor: "#E6E6E6",
+  skeletonBackground: "#e0e0e0",
 };
