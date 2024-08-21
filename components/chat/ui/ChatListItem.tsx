@@ -5,21 +5,33 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React from "react";
+import React, { FC } from "react";
 import Avatar from "./Avatar";
 import { fontFamilies, getFontSize, getWidth } from "@/lib";
 import { Colors } from "@/theme";
 
-const ChatListItem = () => {
+interface Props {
+  id: number;
+  name: string;
+  message: string;
+  unread?: number;
+  time: string;
+  image: string;
+}
+const ChatListItem: FC<Props> = ({
+  id,
+  image,
+  message,
+  name,
+  time,
+  unread,
+}) => {
   return (
-    <TouchableOpacity style={styles.container}>
-      <Avatar
-        SIZE={getWidth(15)}
-        uri="https://avatar.iran.liara.run/username?username=Discuss react native"
-      />
+    <TouchableOpacity activeOpacity={0.7} style={styles.container}>
+      <Avatar SIZE={getWidth(15)} uri={image} />
       <View style={styles.mainContainer}>
-        <Text style={styles.name}>Alex Linderson</Text>
-        <Text style={styles.message}>How are you today?</Text>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.message}>{message}</Text>
       </View>
       <View style={styles.rightContainer}>
         <Text
@@ -30,11 +42,13 @@ const ChatListItem = () => {
             },
           ]}
         >
-          3 min ago
+          {time}
         </Text>
-        <View style={styles.messageCount}>
-          <Text style={styles.whitetext}>5</Text>
-        </View>
+        {unread !== undefined && unread !== 0 && (
+          <View style={styles.messageCount}>
+            <Text style={styles.whitetext}>{unread}</Text>
+          </View>
+        )}
       </View>
     </TouchableOpacity>
   );
@@ -48,7 +62,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: getWidth(5),
     marginHorizontal: getWidth(5),
-    marginVertical: 5,
   },
   mainContainer: {
     flex: 1,
