@@ -11,7 +11,7 @@ const Loader: FC<Props> = ({ isVisible }) => {
   return (
     <Modal
       animationIn={"fadeIn"}
-      animationOut={"fadeOut"}
+      animationOut={"fadeOutDown"}
       isVisible={isVisible}
     >
       <View style={styles.container}>
