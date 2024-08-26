@@ -1,11 +1,29 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { FlatList, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
 import AnimatedContainer from "@/components/AnimatedContainer";
+import { getHeight } from "@/lib";
+import CallListItem from "../ui/CallListItem";
+import CallListItemSkeleton from "../ui/skeleton/CallListItemSkeleton";
 
 const CallListContainer = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }, []);
+
   return (
     <AnimatedContainer>
-      <Text>CallListContainer</Text>
+      <FlatList
+        data={isLoading ? Array(10).fill({}) : []}
+        renderItem={({ item }) =>
+          isLoading ? <CallListItemSkeleton /> : <CallListItem {...item} />
+        }
+        keyExtractor={(item, index) => index.toString()}
+        ItemSeparatorComponent={() => <View style={{ height: getHeight(1) }} />}
+        showsVerticalScrollIndicator={false}
+      />
     </AnimatedContainer>
   );
 };
