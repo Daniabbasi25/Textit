@@ -2,7 +2,7 @@ import React from "react";
 import TabBarHeader from "@/components/TabBarHeader";
 import Icon from "@/components/Icon";
 
-const ContactScreenHeader = () => {
+const SettingScreenHeader = () => {
   return (
     <TabBarHeader
       name="Settings"
@@ -12,4 +12,4 @@ const ContactScreenHeader = () => {
   );
 };
 
-export default ContactScreenHeader;
+export default SettingScreenHeader;
