@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { FC, ReactNode, useEffect } from "react";
+import React, { FC, ReactNode, memo, useEffect } from "react";
 import { Colors } from "@/theme";
 import Animated, {
   useSharedValue,
@@ -12,7 +12,7 @@ interface Props {
   children: ReactNode;
 }
 const AnimatedContainer: FC<Props> = ({ children }) => {
-  const translateY = useSharedValue(300);
+  const translateY = useSharedValue(getHeight(80));
   const animatedStyle = useAnimatedStyle(() => {
     return {
       transform: [{ translateY: translateY.value }],
@@ -20,7 +20,7 @@ const AnimatedContainer: FC<Props> = ({ children }) => {
   });
   useEffect(() => {
     translateY.value = withTiming(5, {
-      duration: 2000,
+      duration: 1000,
     });
   }, [translateY]);
   return (
@@ -31,7 +31,7 @@ const AnimatedContainer: FC<Props> = ({ children }) => {
   );
 };
 
-export default AnimatedContainer;
+export default memo(AnimatedContainer);
 
 const styles = StyleSheet.create({
   container: {
