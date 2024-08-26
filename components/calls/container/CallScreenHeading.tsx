@@ -1,19 +1,17 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import Icon from "../ui/Icon";
+
 import { getWidth } from "@/lib";
-import Avatar from "../ui/Avatar";
-import ScreenHeading from "../ui/ScreenHeading";
+import TabBarHeader from "@/components/TabBarHeader";
+import Icon from "@/components/Icon";
 
 const CallScreenHeading = () => {
   return (
-    <View style={styles.container}>
-      {/* Search Icon */}
-      <Icon name="search" onpress={() => {}} />
-      <ScreenHeading text="Home" />
-      {/* Avater */}
-      <Avatar uri="https://avatar.iran.liara.run/username?username=Discuss react native" />
-    </View>
+    <TabBarHeader
+      name="Call"
+      leftComponent={<Icon name="search" onpress={() => {}} />}
+      rightComponent={<Icon name="search" onpress={() => {}} />}
+    />
   );
 };
 

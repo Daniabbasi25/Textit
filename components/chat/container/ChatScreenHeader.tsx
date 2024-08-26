@@ -1,5 +1,5 @@
 import React from "react";
-import Icon from "../ui/Icon";
+import Icon from "../../Icon";
 import Avatar from "../ui/Avatar";
 import TabBarHeader from "@/components/TabBarHeader";
 

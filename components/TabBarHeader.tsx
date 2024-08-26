@@ -12,7 +12,7 @@ const TabBarHeader: FC<Props> = ({ leftComponent, name, rightComponent }) => {
   return (
     <View style={styles.container}>
       {leftComponent}
-      <ScreenHeading text="Home" />
+      <ScreenHeading text={name} />
       {rightComponent}
     </View>
   );
