@@ -1,5 +1,5 @@
 import { Colors } from "@/theme";
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { View, Image, StyleSheet, ActivityIndicator } from "react-native";
 import Svg, { Path } from "react-native-svg";
 
@@ -118,4 +118,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AvatarWithSegmentedBorder;
+export default memo(AvatarWithSegmentedBorder);
