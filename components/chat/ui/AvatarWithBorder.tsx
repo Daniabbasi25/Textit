@@ -1,6 +1,6 @@
 import { Colors } from "@/theme";
-import React from "react";
-import { View, Image, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, Image, StyleSheet, ActivityIndicator } from "react-native";
 import Svg, { Path } from "react-native-svg";
 
 interface AvatarProps {
@@ -14,6 +14,8 @@ const AvatarWithSegmentedBorder: React.FC<AvatarProps> = ({
   storyCount,
   colors,
 }) => {
+  const [isLoading, setIsloading] = useState<boolean>(true);
+
   const size = 80; // Size of the avatar including border
   const radius = 34; // Adjusted Radius of the inner circle (avatar size/2 minus some padding)
   const strokeWidth = 5; // Thickness of each segment
@@ -62,12 +64,33 @@ const AvatarWithSegmentedBorder: React.FC<AvatarProps> = ({
 
   return (
     <View style={styles.container}>
-      <Svg height={size} width={size} style={styles.svgContainer}>
-        {createSegments()}
-      </Svg>
-      <View style={styles.imageContainer}>
-        <Image source={{ uri }} style={styles.avatar} />
-      </View>
+      {}
+
+      {isLoading ? (
+        <View
+          style={[
+            styles.imageContainer,
+            {
+              backgroundColor: Colors.skeletonBackground,
+            },
+          ]}
+        >
+          <ActivityIndicator size="small" color="#ffffff" />
+        </View>
+      ) : (
+        <>
+          <Svg height={size} width={size} style={styles.svgContainer}>
+            {createSegments()}
+          </Svg>
+          <View style={styles.imageContainer}>
+            <Image
+              source={{ uri }}
+              style={styles.avatar}
+              onLoad={() => setIsloading(false)}
+            />
+          </View>
+        </>
+      )}
     </View>
   );
 };

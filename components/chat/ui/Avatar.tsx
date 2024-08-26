@@ -1,5 +1,5 @@
-import { Image, StyleSheet, Text, View } from "react-native";
-import React, { FC } from "react";
+import { ActivityIndicator, Image, StyleSheet, Text, View } from "react-native";
+import React, { FC, memo, useState } from "react";
 import { getWidth } from "@/lib";
 import { Colors } from "@/theme";
 
@@ -9,24 +9,45 @@ interface Props {
 }
 
 const Avatar: FC<Props> = ({ uri, SIZE = getWidth(12) }) => {
+  const [isLoading, setIsloading] = useState<boolean>(true);
+
   return (
     <View>
-      <Image
-        source={{ uri }}
-        style={[
-          styles.image,
-          {
-            width: SIZE,
-            height: SIZE,
-            borderRadius: SIZE / 2,
-          },
-        ]}
-      />
+      {isLoading ? (
+        <View
+          style={[
+            styles.image,
+            {
+              width: SIZE,
+              height: SIZE,
+              borderRadius: SIZE / 2,
+              backgroundColor: Colors.skeletonBackground,
+              alignItems: "center",
+              justifyContent: "center",
+            },
+          ]}
+        >
+          <ActivityIndicator size="small" color="#ffffff" />
+        </View>
+      ) : (
+        <Image
+          source={{ uri }}
+          style={[
+            styles.image,
+            {
+              width: SIZE,
+              height: SIZE,
+              borderRadius: SIZE / 2,
+            },
+          ]}
+          onLoad={() => setIsloading(false)}
+        />
+      )}
     </View>
   );
 };
 
-export default Avatar;
+export default memo(Avatar);
 
 const styles = StyleSheet.create({
   image: {
