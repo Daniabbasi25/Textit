@@ -4,6 +4,7 @@ import AnimatedContainer from "@/components/AnimatedContainer";
 import { getHeight } from "@/lib";
 import CallListItem from "../ui/CallListItem";
 import CallListItemSkeleton from "../ui/skeleton/CallListItemSkeleton";
+import { callListDummy } from "@/constants/CallListDummy";
 
 const CallListContainer = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -16,7 +17,7 @@ const CallListContainer = () => {
   return (
     <AnimatedContainer>
       <FlatList
-        data={isLoading ? Array(10).fill({}) : []}
+        data={isLoading ? Array(10).fill({}) : callListDummy}
         renderItem={({ item }) =>
           isLoading ? <CallListItemSkeleton /> : <CallListItem {...item} />
         }

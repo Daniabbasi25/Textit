@@ -10,7 +10,7 @@ const CallScreenHeading = () => {
     <TabBarHeader
       name="Call"
       leftComponent={<Icon name="search" onpress={() => {}} />}
-      rightComponent={<Icon name="search" onpress={() => {}} />}
+      rightComponent={<Icon name="CallUserIcon" onpress={() => {}} />}
     />
   );
 };
