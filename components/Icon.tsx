@@ -3,10 +3,10 @@ import React, { FC } from "react";
 import Feather from "@expo/vector-icons/Feather";
 import { getFontSize, getWidth } from "@/lib";
 import { Colors } from "@/theme";
-import { CallUserIcon } from "@/assets";
+import { CallUserIcon, UserAddIcon } from "@/assets";
 
 interface Props {
-  name: "search" | "CallUserIcon";
+  name: "search" | "CallUserIcon" | "UserAddIcon";
   onpress: () => void;
 }
 const SIZE = getWidth(10);
@@ -15,6 +15,8 @@ const Icon: FC<Props> = ({ name, onpress }) => {
     <TouchableOpacity onPress={onpress} style={styles.container}>
       {name === "CallUserIcon" ? (
         <CallUserIcon width={SIZE / 2} height={SIZE / 2} />
+      ) : name === "UserAddIcon" ? (
+        <UserAddIcon width={SIZE / 2} height={SIZE / 2} />
       ) : (
         <Feather name={name} size={SIZE / 2} color="white" />
       )}

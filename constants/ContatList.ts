@@ -85,3 +85,13 @@ export const ContactList = [
     ],
   },
 ];
+export const ContactListSkeleton = [
+  {
+    alphabat: "A",
+    data: [null, null],
+  },
+  {
+    alphabat: "B",
+    data: [null, null],
+  },
+];

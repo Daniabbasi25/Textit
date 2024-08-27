@@ -8,7 +8,7 @@ const ContactsScreenHeader = () => {
     <TabBarHeader
       name="Contacts"
       leftComponent={<Icon name="search" onpress={() => {}} />}
-      rightComponent={<Icon name="search" onpress={() => {}} />}
+      rightComponent={<Icon name="UserAddIcon" onpress={() => {}} />}
     />
   );
 };

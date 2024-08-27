@@ -5,15 +5,18 @@ import {
   View,
   RefreshControl,
 } from "react-native";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import AnimatedContainer from "@/components/AnimatedContainer";
 import Heading from "@/components/Heading";
-import { ContactList } from "@/constants/ContatList";
+import { ContactList, ContactListSkeleton } from "@/constants/ContatList";
 import ContactListItem from "../ui/ContactListItem";
 import { fontFamilies, getFontSize, getHeight, getWidth } from "@/lib";
 import { Colors } from "@/theme";
+import ContactListItemSkeleton from "../ui/skeletons/ContactListItemSkeleton";
 
 const ContactListContainer = () => {
+  const [isLoading, setIsLooading] = useState<boolean>(true);
+
   const [refreshing, setRefreshing] = useState(false);
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -23,14 +26,25 @@ const ContactListContainer = () => {
     }, 2000);
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLooading(false);
+    }, 4000);
+  }, []);
   return (
     <AnimatedContainer>
       <Heading text="My Contact" />
 
       <SectionList
-        sections={ContactList}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <ContactListItem {...item} />}
+        sections={isLoading ? ContactListSkeleton : ContactList}
+        keyExtractor={(ite, index) => index.toString()}
+        renderItem={({ item }) =>
+          isLoading || item === null ? (
+            <ContactListItemSkeleton />
+          ) : (
+            <ContactListItem {...item} />
+          )
+        }
         renderSectionHeader={({ section: { alphabat } }) => (
           <Text style={styles.header}>{alphabat}</Text>
         )}
