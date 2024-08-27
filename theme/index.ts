@@ -13,4 +13,5 @@ export const Colors = {
   iconBackground: "rgba(255,255,255,0.2)",
   handleColor: "#E6E6E6",
   skeletonBackground: "#e0e0e0",
+  callListIcons: "#989E9C",
 };
