@@ -1,3 +1,4 @@
+import Avatar from "@/components/Avatar";
 import { Colors } from "@/theme";
 import React, { memo, useState } from "react";
 import { View, Image, StyleSheet, ActivityIndicator } from "react-native";
@@ -64,33 +65,12 @@ const AvatarWithSegmentedBorder: React.FC<AvatarProps> = ({
 
   return (
     <View style={styles.container}>
-      {}
-
-      {isLoading ? (
-        <View
-          style={[
-            styles.imageContainer,
-            {
-              backgroundColor: Colors.skeletonBackground,
-            },
-          ]}
-        >
-          <ActivityIndicator size="small" color="#ffffff" />
-        </View>
-      ) : (
-        <>
-          <Svg height={size} width={size} style={styles.svgContainer}>
-            {createSegments()}
-          </Svg>
-          <View style={styles.imageContainer}>
-            <Image
-              source={{ uri }}
-              style={styles.avatar}
-              onLoad={() => setIsloading(false)}
-            />
-          </View>
-        </>
-      )}
+      <Svg height={size} width={size} style={styles.svgContainer}>
+        {createSegments()}
+      </Svg>
+      <View style={styles.imageContainer}>
+        <Avatar uri={uri} SIZE={65} />
+      </View>
     </View>
   );
 };
