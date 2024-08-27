@@ -1,11 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import AnimatedContainer from "@/components/AnimatedContainer";
+import Heading from "@/components/Heading";
 
 const SettingListContainer = () => {
   return (
     <AnimatedContainer>
-      <Text>SettingListContainer</Text>
+      <Heading text="Nazrul Islam" />
     </AnimatedContainer>
   );
 };
