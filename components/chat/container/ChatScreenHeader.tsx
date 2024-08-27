@@ -1,6 +1,6 @@
 import React from "react";
 import Icon from "../../Icon";
-import Avatar from "../ui/Avatar";
+import Avatar from "../../Avatar";
 import TabBarHeader from "@/components/TabBarHeader";
 
 const ChatScreenHeader = () => {

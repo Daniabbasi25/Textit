@@ -1,3 +1,5 @@
+const DYNAMICIMAGE = (name: string) =>
+  `https://avatar.iran.liara.run/username?username=${name}`;
 export const ChatListDummy = [
   {
     id: 1,
@@ -5,7 +7,7 @@ export const ChatListDummy = [
     message: "How are you today?",
     unread: 2,
     time: "2 min ago",
-    image: "https://randomuser.me/api/portraits/men/1.jpg",
+    image: DYNAMICIMAGE("Alex Linderson"),
   },
   {
     id: 2,
@@ -13,7 +15,7 @@ export const ChatListDummy = [
     message: "Let's catch up later.",
     unread: 1,
     time: "10 min ago",
-    image: "https://randomuser.me/api/portraits/women/2.jpg",
+    image: DYNAMICIMAGE("Emily Carter"),
   },
   {
     id: 3,
@@ -21,7 +23,7 @@ export const ChatListDummy = [
     message: "Where are you?",
     unread: 0,
     time: "30 min ago",
-    image: "https://randomuser.me/api/portraits/men/3.jpg",
+    image: DYNAMICIMAGE("Michael Brown"),
   },
   {
     id: 4,
@@ -29,7 +31,7 @@ export const ChatListDummy = [
     message: "Call me when you're free.",
     unread: 3,
     time: "1 hour ago",
-    image: "https://randomuser.me/api/portraits/women/4.jpg",
+    image: DYNAMICIMAGE("Sophia Taylor"),
   },
   {
     id: 5,
@@ -37,7 +39,7 @@ export const ChatListDummy = [
     message: "I'll be there soon.",
     unread: 0,
     time: "2 hours ago",
-    image: "https://randomuser.me/api/portraits/men/5.jpg",
+    image: DYNAMICIMAGE("James Anderson"),
   },
   {
     id: 6,
@@ -45,7 +47,7 @@ export const ChatListDummy = [
     message: "Can you send the files?",
     unread: 1,
     time: "3 hours ago",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
+    image: DYNAMICIMAGE("Olivia Martinez"),
   },
   {
     id: 7,

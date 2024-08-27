@@ -6,7 +6,7 @@ import {
   View,
 } from "react-native";
 import React, { FC } from "react";
-import Avatar from "./Avatar";
+import Avatar from "../../Avatar";
 import { fontFamilies, getFontSize, getWidth } from "@/lib";
 import { Colors } from "@/theme";
 
