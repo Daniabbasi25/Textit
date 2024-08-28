@@ -1,7 +1,16 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
-const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
+// Define a custom interface for the Request object to include the user
+interface AuthenticatedRequest extends Request {
+  user?: any; // Adjust 'any' to the type of your decoded user object
+}
+
+const authMiddleware = (
+  req: AuthenticatedRequest,
+  res: Response,
+  next: NextFunction
+) => {
   const token = req.header("Authorization")?.replace("Bearer ", "");
 
   if (!token) {
@@ -10,8 +19,8 @@ const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET || "secret");
-    req.user = decoded;
-    next();
+    req.user = decoded; // Attach the decoded user info to the request object
+    next(); // Proceed to the next middleware or controller
   } catch (err) {
     res.status(400).json({ message: "Invalid token" });
   }

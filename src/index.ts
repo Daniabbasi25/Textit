@@ -2,6 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes";
+import contactRoutes from "./routes/contactRoutes";
+import authMiddleware from "./middleware/authMiddleware";
 
 dotenv.config();
 
@@ -19,5 +21,6 @@ mongoose
 
 app.use(express.json()); // Middleware to parse JSON
 app.use("/api/auth", authRoutes); // Auth routes
+app.use("/api/contacts", authMiddleware, contactRoutes); // Auth routes
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
