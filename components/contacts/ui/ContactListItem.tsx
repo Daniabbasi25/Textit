@@ -3,20 +3,28 @@ import React, { FC } from "react";
 import { fontFamilies, getFontSize, getWidth } from "@/lib";
 import Avatar from "@/components/Avatar";
 import { Colors } from "@/theme";
+import { Contact } from "@/modules/contact/contactTypes";
+import { DYNAMICIMAGE } from "@/constants/ChatListDummy";
 
-interface Props {
-  id: number;
-  name: string;
-  image: string;
-  stats: string;
-}
-const ContactListItem: FC<Props> = ({ id, image, name, stats }) => {
+// interface Props {
+//   id: number;
+//   name: string;
+//   image: string;
+//   stats: string;
+// }
+const ContactListItem: FC<Contact> = ({
+  _id,
+  email,
+  name,
+  profilePicture,
+  status,
+}) => {
   return (
     <TouchableOpacity activeOpacity={0.7} style={styles.container}>
-      <Avatar SIZE={getWidth(15)} uri={image} />
+      <Avatar SIZE={getWidth(15)} uri={profilePicture ?? DYNAMICIMAGE(name)} />
       <View style={styles.mainContainer}>
         <Text style={styles.name}>{name}</Text>
-        <Text style={styles.message}>{stats}</Text>
+        <Text style={styles.message}>{status}</Text>
       </View>
     </TouchableOpacity>
   );

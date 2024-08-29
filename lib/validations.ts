@@ -25,4 +25,11 @@ const signupSchema = yup.object({
     .min(8, VALID_PASSWORD)
     .oneOf([yup.ref("password")], MATCH_PASSWORD),
 });
-export { loginSchema, signupSchema };
+const addContactSchema = yup.object({
+  email: yup
+    .string()
+    .email(VALID_EMAIL)
+    .required(REQUIRED_EMAIL)
+    .matches(EmailRegex, VALID_EMAIL),
+});
+export { loginSchema, signupSchema, addContactSchema };

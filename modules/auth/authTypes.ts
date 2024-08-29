@@ -2,6 +2,8 @@ export interface User {
   _id: string;
   name: string;
   email: string;
+  status?: string;
+  profilePicture?: string;
   // Add any other user properties here
 }
 

@@ -18,4 +18,7 @@ interface SvgProps {
   height: number;
   color?: string;
 }
-export { LoginData, SignUpData, SvgProps, FlashBarProps };
+interface AddContactFormData {
+  email: string;
+}
+export { LoginData, SignUpData, SvgProps, FlashBarProps, AddContactFormData };

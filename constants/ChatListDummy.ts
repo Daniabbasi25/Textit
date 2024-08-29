@@ -1,4 +1,4 @@
-const DYNAMICIMAGE = (name: string) =>
+export const DYNAMICIMAGE = (name: string) =>
   `https://avatar.iran.liara.run/username?username=${name}`;
 export const ChatListDummy = [
   {

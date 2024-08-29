@@ -87,11 +87,29 @@ export const ContactList = [
 ];
 export const ContactListSkeleton = [
   {
-    alphabat: "A",
-    data: [null, null],
+    alphabet: "A",
+    data: [
+      {
+        _id: "1",
+        name: "",
+        email: "",
+      },
+      { _id: "", name: "", email: "" },
+    ],
   },
   {
-    alphabat: "B",
-    data: [null, null],
+    alphabet: "B",
+    data: [
+      {
+        _id: "1",
+        name: "",
+        email: "",
+      },
+      {
+        _id: "1",
+        name: "",
+        email: "",
+      },
+    ],
   },
 ];
