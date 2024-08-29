@@ -9,6 +9,9 @@ import { AddContactFormData } from "@/lib/interfaces";
 import AuthInput from "@/components/auth/ui/AuthInput";
 import AuthButton from "@/components/auth/ui/AuthButton";
 import { getHeight, getWidth } from "@/lib";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store/store";
+import { addContact } from "@/modules/contact/contactActions";
 
 interface Props {
   handleClose: () => void;
@@ -19,18 +22,18 @@ const defaultValues = {
 const AddContactForm: FC<Props> = ({ handleClose }) => {
   const { showMessage } = useFlashMessage();
   const { hideLoader, showLoader } = useLoader();
+  const dispatch = useDispatch<AppDispatch>();
   const { control, handleSubmit } = useForm({
     mode: "onSubmit",
     defaultValues,
     resolver: yupResolver(addContactSchema),
   });
   const onSubmit = (data: AddContactFormData): void => {
-    console.log(data);
-
     handleClose();
+
     setTimeout(() => {
-      showLoader();
-    }, 500);
+      dispatch(addContact(data.email, showMessage, showLoader, hideLoader));
+    }, 300);
   };
   return (
     <View>

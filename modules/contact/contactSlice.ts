@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Contact, ContactListType, ContactState } from "./contactTypes";
+import { insertContact } from "@/lib/InsertContactinList";
 const initialState: ContactState = {
   contacts: [],
   addLoading: false,
@@ -33,7 +34,7 @@ const contactSlice = createSlice({
       action: PayloadAction<{ contact: Contact; message: string }>
     ) {
       state.addLoading = false;
-      // state.contacts = [...state.contacts, action.payload.contact];
+      state.contacts = insertContact(state.contacts, action.payload.contact);
     },
   },
 });

@@ -21,6 +21,7 @@ export const addContact =
   async (dispatch: AppDispatch) => {
     try {
       showLoader();
+
       dispatch(AddRequest());
       const response = await apiClient.post("contacts/addContact", {
         email,
