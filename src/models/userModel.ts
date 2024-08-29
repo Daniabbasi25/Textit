@@ -4,6 +4,8 @@ interface IUser extends Document {
   name: string;
   email: string;
   password: string;
+  status?: string;
+  profilePicture?: string;
 }
 
 const userSchema: Schema = new Schema({
@@ -19,6 +21,14 @@ const userSchema: Schema = new Schema({
   password: {
     type: String,
     required: true,
+  },
+  status: {
+    type: String,
+    required: false,
+  },
+  profilePicture: {
+    type: String,
+    required: false,
   },
 });
 

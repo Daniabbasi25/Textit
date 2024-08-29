@@ -1,10 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
+import { AuthenticatedRequest } from "../types/requeststypes";
 
 // Define a custom interface for the Request object to include the user
-interface AuthenticatedRequest extends Request {
-  user?: any; // Adjust 'any' to the type of your decoded user object
-}
 
 const authMiddleware = (
   req: AuthenticatedRequest,
